@@ -11,7 +11,7 @@ int main()
 	cin >> n;
 	cin >> m;
 	bool * facing = new bool[n];
-	char * title = new char[n];
+	string * title = new string[n];
 	for (int i = 0; i < n; i++)
 	{
 		cin >> facing[i];
@@ -25,7 +25,30 @@ int main()
 		cin >> steps[i];
 	}
 	int result = 0;
-	for (int i = 0; i < m; i++)
+	for(int i=0;i<m;i++)
+	{
+		if (facing[result] && direction[i]) {
+			result += steps[i];
+		}
+		else {
+			result -= steps[i];
+		}
+		bool stat = 1;
+		while (stat)
+		{
+			if (result >= n) {
+				result -= n;
+			}
+			if (result < 0) {
+				result += n;
+			}
+			if (result >= 0 && result < 7)
+			{
+				stat = false;
+			}
+		}
+		
+	/*for (int i = 0; i < m; i++)
 	{
 		int dir = direction[i];
 		int fac = facing[result];
@@ -53,7 +76,7 @@ int main()
 			{
 				stat = false;
 			}
-		}
+		}*/
 	}
 	cout << title[result];
 	return 0;
